@@ -15,22 +15,31 @@ def load_library(file_path)
   translator
 end
 
-def get_japanese_emoticon(file_path, emoticon)
+def get_japanese_emoticon(file_path, emoticon) #cleanest way i could come up with
   # code goes here
-  load_library(file_path)["get_emoticon"].each do |eng_emoji, jap_emoji|
-    if eng_emoji == emoticon
-      return jap_emoji
-    end
-  end
-  "Sorry, that emoticon was not found"
+  output = load_library(file_path)["get_emoticon"][emoticon]
+  output ? output : "Sorry, that emoticon was not found"
 end
+
+# def get_japanese_emoticon(file_path, emoticon) # my first attempt
+#   # code goes here
+#   load_library(file_path)["get_emoticon"].each do |eng_emoji, jap_emoji|
+#     if eng_emoji == emoticon
+#       return jap_emoji
+#     end
+#   end
+#   "Sorry, that emoticon was not found"
+# end
 
 def get_english_meaning(file_path, emoticon)
   # code goes here
-  load_library(file_path)["get_meaning"].each do |jap_emoji, word|
-    if jap_emoji == emoticon
-      return word
-    end
-  end
-  "Sorry, that emoticon was not found"
+  output = load_library(file_path)["get_meaning"][emoticon]
+  output ? output : "Sorry, that emoticon was not found"
 end
+
+# load_library(file_path)["get_meaning"].each do |jap_emoji, word|
+#   if jap_emoji == emoticon
+#     return word
+#   end
+# end
+# "Sorry, that emoticon was not found"
